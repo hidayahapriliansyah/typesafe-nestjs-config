@@ -1,73 +1,43 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Type-safe Environment Variables in NestJS Example Project
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 💻 About the Project
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+I have created some configuration in the `config` folder which will call environment variables from the `.env` file. After that, the configuration is called in the `src/app.service.ts` file with type-safe way.
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+To make sure this works, I also created unit tests to verify that the `app.service.ts` file returns valid values from the environment variables. To run the unit tests, use:
 
 ```bash
-$ npm install
+npm run test
 ```
 
-## Running the app
+## 🧩 Understanding the Problem
 
-```bash
-# development
-$ npm run start
+Managing environment variables in a NestJS application can become easier and safer with a type-safe approach. In this repository, I'll explain the common issues encountered when using environment variables directly and how NestJS provides a better solution.
 
-# watch mode
-$ npm run start:dev
 
-# production mode
-$ npm run start:prod
+Typically, we use environment variables in code like this:
+
+```javascript
+process.env.VARIABLE_NAME
 ```
 
-## Test
+Or using NestJS configuration like the image below:
 
-```bash
-# unit tests
-$ npm run test
+![NestJS Configuration](assets/1.png)
 
-# e2e tests
-$ npm run test:e2e
+However, this method has a drawback: there is no autocomplete for writing the variable names. This can become problematic if we need to use environment variables in many places, such as when configuring API URLs or API keys across multiple services.
 
-# test coverage
-$ npm run test:cov
-```
+## 🤔 Why Type-safe?
 
-## Support
+Fortunately, NestJS provides a way to call environment variables in a type-safe manner using namespaces. You can read the official NestJS documentation about configuration here: [NestJS Configuration Documentation](https://docs.nestjs.com/techniques/configuration#configuration-namespaces).
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Using namespaces gives us autocomplete when calling the variables, which is very beneficial because it helps avoid typos when using the variables in multiple places.
 
-## Stay in touch
+![NestJS Autocomplete](assets/2.png)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+## ✨ Conclusion
 
-Nest is [MIT licensed](LICENSE).
+Incorporating type-safe environment variables in your NestJS projects not only improves code readability but also reduces the risk of errors caused by typos. By leveraging the built-in features of NestJS, you can ensure that your application configuration is both robust and maintainable. If you haven't already, I highly recommend giving this approach a try in your next NestJS project.
+
+Thank you for exploring this repository! If you have any questions or feedback, feel free to open an issue or reach out to me.
